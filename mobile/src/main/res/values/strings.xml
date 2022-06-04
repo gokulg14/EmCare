@@ -1,0 +1,77 @@
+<resources>
+    <string name="app_name">wear</string>
+
+    <!--Titles-->
+    <string name="first_slide_title">Pair With Smartwatch</string>
+    <string name="second_slide_title">Call Ambulance On Emergency</string>
+    <string name="third_slide_title">Regular Monitoring Of Health</string>
+    <string name="fourth_slide_title">Sit Back And Relax</string>
+    <string name="slogan">We Care About You</string>
+
+    <!--Description-->
+    <string name="first_slide_desc">You can pair with your smartwatch and can catch your health data regularly</string>
+    <string name="second_slide_desc">On emergency we can call ambulance with in a fraction of seconds and can send notification and location to your caretaker</string>
+    <string name="third_slide_desc">Caretaker can monitor your health data at any time with the help of our app</string>
+    <string name="fourth_slide_desc">We will handle everything for you, As you have the app in your pocket and paired with your smartwatch you don\'t have to worry</string>
+
+    <!--Buttons-->
+    <string name="skip_btn">Skip</string>
+    <string name="next_btn">Next</string>
+    <string name="let_get_started">Lets Get Started</string>
+
+    <string name="app_name_homepage">EmCare</string>
+    <string name="home_heading">You and Me</string>
+    <string name="home_desc">You can see he/she\'s location information and health data! Come and see he/she!</string>
+    <string name="features">Features we can provide to you</string>
+    <string name="Heart_rate">Heart Rate</string>
+    <string name="Bp">Blood Pressure</string>
+
+    <string name="home">HOME</string>
+    <string name="contacts">ADD CONTACTS</string>
+    <string name="devices">DEVICES</string>
+    <string name="history">HISTORY</string>
+    <string name="login">LOGIN</string>
+    <string name="profile">PROFILE</string>
+    <string name="logout">LOGOUT</string>
+    <string name="share">SHARE</string>
+    <string name="rate">RATE US</string>
+
+    <!--for contacts-->
+
+    <string name="contact_name">Name:</string>
+    <string name="contact_no">Number:</string>
+    <string name="confirm">Confirm</string>
+    <string name="emergency">Add Emergency Contacts</string>
+
+    <!-- startup screen -->
+
+    <string name="heading">We Care About You</string>
+    <string name="signup">SIGN UP</string>
+    <string name="how_we_work">HOW WE WORK</string>
+
+    <!-- login -->
+
+    <string name="enter_username">Username</string>
+    <string name="enter_password">Password</string>
+    <string name="new_user">New User? SIGN UP</string>
+
+    <!-- login -->
+    <string name="create">Create\nAccount</string>
+    <string name="mail">Email</string>
+    <string name="phone">Phone No</string>
+    <string name="password">Password</string>
+    <string name="conf_pass">Confirm Password</string>
+    <string name="next">Next</string>
+    <string name="login_back">Already have an account? Login</string>
+    <string name="gender">Choose Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="other">Other</string>
+    <string name="age">Select Your Date Of Birth</string>
+    <string name="reg">Proceed</string>
+
+    <!-- profile -->
+    <string name="patient">Patient</string>
+
+
+</resources>

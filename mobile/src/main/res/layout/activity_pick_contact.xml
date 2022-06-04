@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".patient.PickContact"
+    android:background="@color/home_background"
+    android:orientation="vertical"
+    android:layout_margin="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/home_background"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize">
+
+            <ImageView
+                android:id="@+id/back_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="15dp"
+                android:onClick="backtoHome"
+                android:src="@drawable/arrow_back_icon" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/emergency"
+            android:textSize="30sp"
+            android:fontFamily="serif-monospace"
+            android:padding="10dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:elevation="8dp"
+            android:id="@+id/contact_view"
+            android:visibility="invisible"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/cardview_light_background">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/thumbnailTv"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="12dp"
+                android:src="@drawable/ic_baseline_person"
+                app:civ_border_color="@color/card3"
+                app:civ_border_width="2dp" />
+
+            <TextView
+                android:id="@+id/nameView"
+                android:layout_width="77dp"
+                android:layout_height="45dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/tienne"
+                android:gravity="center"
+                android:text="@string/contact_name"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/numView"
+                android:layout_width="77dp"
+                android:layout_height="45dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/tienne"
+                android:gravity="center"
+                android:text="@string/contact_no"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/nameView"
+                android:fontFamily="@font/tienne"
+                android:gravity="center"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_toRightOf="@+id/numView"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentBottom="true"
+                android:fontFamily="@font/tienne"
+                android:id="@+id/num"
+                android:gravity="center"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:elevation="8dp"
+            android:id="@+id/contact_view1"
+            android:visibility="invisible"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/cardview_light_background">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/thumbnailTv1"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="12dp"
+                android:src="@drawable/ic_baseline_person"
+                app:civ_border_color="@color/card3"
+                app:civ_border_width="2dp" />
+
+            <TextView
+                android:id="@+id/nameView1"
+                android:layout_width="77dp"
+                android:layout_height="45dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/tienne"
+                android:gravity="center"
+                android:text="@string/contact_name"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/numView1"
+                android:layout_width="77dp"
+                android:layout_height="45dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/tienne"
+                android:gravity="center"
+                android:text="@string/contact_no"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_toRightOf="@+id/nameView1"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/tienne"
+                android:id="@+id/name1"
+                android:gravity="center"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_toRightOf="@+id/numView1"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentBottom="true"
+                android:fontFamily="@font/tienne"
+                android:id="@+id/num1"
+                android:gravity="center"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:elevation="8dp"
+            android:id="@+id/contact_view2"
+            android:visibility="invisible"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/cardview_light_background">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/thumbnailTv2"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="12dp"
+                android:src="@drawable/ic_baseline_person"
+                app:civ_border_color="@color/card3"
+                app:civ_border_width="2dp" />
+
+            <TextView
+                android:id="@+id/nameView2"
+                android:layout_width="77dp"
+                android:layout_height="45dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/tienne"
+                android:gravity="center"
+                android:text="@string/contact_name"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/numView2"
+                android:layout_width="77dp"
+                android:layout_height="45dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/tienne"
+                android:gravity="center"
+                android:text="@string/contact_no"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_toRightOf="@+id/nameView2"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/tienne"
+                android:id="@+id/name2"
+                android:gravity="center"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_toRightOf="@+id/numView2"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentBottom="true"
+                android:fontFamily="@font/tienne"
+                android:id="@+id/num2"
+                android:gravity="center"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/select_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/light_white"
+                android:src="@drawable/ic_person_add" />
+
+            <Button
+                android:id="@+id/contact_confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@color/steps"
+                android:elevation="8dp"
+                android:visibility="invisible"
+                android:text="@string/confirm"
+                android:onClick="sendNumToDb"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</ScrollView>
