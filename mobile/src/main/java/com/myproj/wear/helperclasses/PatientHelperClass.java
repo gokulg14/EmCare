@@ -2,9 +2,33 @@ package com.myproj.wear.helperclasses;
 
 public class PatientHelperClass {
 
-    private String username, email, phoneNo, password, gender, date_of_birth;
+    private String username, email, phoneNo, password, gender, date_of_birth, cTName, cTNum,active;
 
     public PatientHelperClass() {
+    }
+
+    public String getActive() {
+        return active;
+    }
+
+    public void setActive(String active) {
+        this.active = active;
+    }
+
+    public String getcTNum() {
+        return cTNum;
+    }
+
+    public void setcTNum(String cTNum) {
+        this.cTNum = cTNum;
+    }
+
+    public String getcTName() {
+        return cTName;
+    }
+
+    public void setcTName(String cTName) {
+        this.cTName = cTName;
     }
 
     public String getUsername() {

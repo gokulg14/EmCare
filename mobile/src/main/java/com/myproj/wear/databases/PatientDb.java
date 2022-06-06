@@ -8,15 +8,18 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.myproj.wear.helperclasses.PatientHelperClass;
 
+import java.util.Random;
+
 public class PatientDb extends SQLiteOpenHelper {
         public static final String DATABASE_NAME= "PatientData.db";
         public static final String TABLE_NAME= "Patient_table";
         public static final String COL_1= "NAME";
         public static final String COL_2= "EMAIL";
         public static final String COL_3= "NUMBER";
-        public static final String COL_4= "PASSWORD";
-        public static final String COL_5= "GENDER";
-        public static final String COL_6= "DOB";
+        public static final String COL_4= "CTNAME";
+        public static final String COL_5= "CTNUM";
+        public static final String COL_6= "GENDER";
+        public static final String COL_7= "DOB";
 
         public PatientDb(Context context) {
             super(context, DATABASE_NAME, null, 1 );
@@ -24,7 +27,7 @@ public class PatientDb extends SQLiteOpenHelper {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL("create table " + TABLE_NAME +"(NAME TEXT ,EMAIL TEXT ,NUMBER INTEGER PRIMARY KEY,PASSWORD TEXT ,GENDER TEXT ,DOB DATE )" );
+            db.execSQL("create table " + TABLE_NAME +"(NAME TEXT PRIMARY KEY,EMAIL TEXT ,NUMBER INTEGER ,CTNAME TEXT , CTNUM INTEGER, GENDER TEXT ,DOB DATE )" );
         }
 
         @Override
@@ -37,17 +40,20 @@ public class PatientDb extends SQLiteOpenHelper {
             String name = patientInfo.getUsername();
             String email = patientInfo.getEmail();
             String number = patientInfo.getPhoneNo();
-            String password = patientInfo.getPassword();
+            String ctName = patientInfo.getcTName();
+            String ctNum = patientInfo.getcTNum();
             String gender = patientInfo.getGender();
             String dob = patientInfo.getDate_of_birth();
             SQLiteDatabase db= this.getWritableDatabase();
             ContentValues contentValues = new ContentValues();
+
             contentValues.put(COL_1,name);
             contentValues.put(COL_2,email);
             contentValues.put(COL_3,number);
-            contentValues.put(COL_4,password);
-            contentValues.put(COL_5,gender);
-            contentValues.put(COL_6,dob);
+            contentValues.put(COL_4,ctName);
+            contentValues.put(COL_5,ctNum);
+            contentValues.put(COL_6,gender);
+            contentValues.put(COL_7,dob);
             long result = db.insert(TABLE_NAME,null,contentValues);
             if (result == -1)
                 return false;
@@ -55,16 +61,33 @@ public class PatientDb extends SQLiteOpenHelper {
                 return true;
         }
 
-        //checking the uname and password
-        public Boolean checkUsernamePassword(String username,String password){
-            SQLiteDatabase db = this.getWritableDatabase();
-            Cursor cursor = db.rawQuery("SELECT * FROM  Patient_table   WHERE  NAME =? AND  PASSWORD =?",new String[] {username,password});
-            if (cursor.getCount()>0) {
-                return true;
+        public String getPatiantInfo(String name) {
+            SQLiteDatabase careTakerInfo = this.getWritableDatabase();
+            Cursor cursor = careTakerInfo.rawQuery("SELECT * FROM Patient_table WHERE CTNAME=?",new String[]{name});
+            final int nameIndex = cursor.getColumnIndex(COL_1);
+            while(cursor.moveToNext()){
+               return cursor.getString(nameIndex);
             }
-            else {
-                return false;
-            }
+            return "NO_PATIENT_FOUND";
         }
 
+        public boolean patientOrNot(String name) {
+            SQLiteDatabase careTakerInfo = this.getWritableDatabase();
+            Cursor cursor = careTakerInfo.rawQuery("SELECT * FROM Patient_table WHERE NAME=?",new String[]{name});
+            if(cursor.getCount()>0) {
+                return true;
+            }
+            return false;
+        }
+
+    public String getCareTakerPhoneNumber(String name) {
+        SQLiteDatabase careTakerInfo = this.getWritableDatabase();
+        Cursor cursor = careTakerInfo.rawQuery("SELECT * FROM Patient_table WHERE NAME=?",new String[]{name});
+        final int careTakerNumber = cursor.getColumnIndex(COL_5);
+        while(cursor.moveToNext()){
+            return cursor.getString(careTakerNumber);
+        }
+        return "";
     }
+
+}

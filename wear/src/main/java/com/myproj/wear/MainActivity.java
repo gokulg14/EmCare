@@ -32,7 +32,9 @@ import com.google.android.gms.wearable.Wearable;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -83,6 +85,9 @@ public class MainActivity extends Activity {
             sensorvalues.add(String.valueOf(event.values[0]));
             sensorData.put(type,sensorvalues);
         }
+        Set<String> time = new HashSet<>();
+        time.add(LocalDateTime.now().toString());
+        sensorData.put("TIME", time);
         return sensorData;
     }
 

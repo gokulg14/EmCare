@@ -21,7 +21,7 @@ public class PatientSignUp extends AppCompatActivity {
 
     //for db fn
 
-    private TextInputLayout regUsername, regEmail, regPhoneNo, regPassword, regConfPassword;
+    private TextInputLayout regUsername, regEmail, regPhoneNo, regPassword, regConfPassword, regCareUsername, regCarePhoneNo;
     private Button next, backToLogin;
     PatientHelperClass patientInfo;
     ImageView back_btn;
@@ -38,8 +38,10 @@ public class PatientSignUp extends AppCompatActivity {
         regEmail = findViewById(R.id.email);
         regPhoneNo = findViewById(R.id.phoneNo);
         regPassword = findViewById(R.id.password);
+        regCarePhoneNo = findViewById(R.id.cTPhoneNo);
         regConfPassword = findViewById(R.id.confPassword);
         backToLogin = findViewById(R.id.loginback);
+        regCareUsername = findViewById(R.id.care_username);
         next = findViewById(R.id.signup_next_btn);
 
         // back to the login page on a button click
@@ -63,11 +65,13 @@ public class PatientSignUp extends AppCompatActivity {
                 String email = regEmail.getEditText().getText().toString();
                 String phoneNo = regPhoneNo.getEditText().getText().toString();
                 String password = regPassword.getEditText().getText().toString();
+                String cname = regCareUsername.getEditText().getText().toString();
+                String cPhoneNo = regCarePhoneNo.getEditText().getText().toString();
 
                 //checking
-                if (TextUtils.isEmpty(username) && TextUtils.isEmpty(email) && TextUtils.isEmpty(password) && TextUtils.isEmpty(phoneNo)) {
+                if (TextUtils.isEmpty(username) && TextUtils.isEmpty(email) && TextUtils.isEmpty(password) && TextUtils.isEmpty(phoneNo) && TextUtils.isEmpty(cname) && TextUtils.isEmpty(cPhoneNo)) {
                     Toast.makeText(PatientSignUp.this, "Insert Data", Toast.LENGTH_LONG).show();
-                } else if (!validateUsername() | !validateEmail() | !validatePhoneNo() | !validatePassword() | !ConfirmPassword()) {
+                } else if (!validateUsername() | !validateEmail() | !validatePhoneNo() | !validatePassword() | !ConfirmPassword() | !validateCareUsername() | !validateCarePhoneNo()) {
                     return;
                 } else {
 
@@ -77,6 +81,8 @@ public class PatientSignUp extends AppCompatActivity {
                     i.putExtra("email", email);
                     i.putExtra("number", phoneNo);
                     i.putExtra("password", password);       // all values are passed with their key
+                    i.putExtra("cUsername", cname);       // all values are passed with their key
+                    i.putExtra("cPhoneNo", cPhoneNo);       // all values are passed with their key
                     startActivity(i);
                 }
             }
@@ -104,6 +110,24 @@ public class PatientSignUp extends AppCompatActivity {
             return false;
         } else {
             regUsername.setError(null);
+            return true;
+        }
+    }
+
+    private Boolean validateCareUsername() {
+        String val = regCareUsername.getEditText().getText().toString().trim();
+        String noWhiteSpace = "\\A\\w{1,10}\\z";
+        if (val.isEmpty()) {
+            regCareUsername.setError("Field cannot be empty");
+            return false;
+        } else if (val.length() >= 10) {
+            regCareUsername.setError("Username too Long");
+            return false;
+        } else if (!val.matches(noWhiteSpace)) {
+            regCareUsername.setError("White spaces are not allowed or Special symbol are not allowed");
+            return false;
+        } else {
+            regCareUsername.setError(null);
             return true;
         }
     }
@@ -179,6 +203,26 @@ public class PatientSignUp extends AppCompatActivity {
             return false;
         } else {
             regConfPassword.setError(null);
+            return true;
+        }
+    }
+
+    private Boolean validateCarePhoneNo(){
+        String val = regCarePhoneNo.getEditText().getText().toString().trim();
+        int count = 0;
+        for (int i = 0, len = val.length(); i < len; i++) {
+            if (Character.isDigit(val.charAt(i))) {
+                count++;
+            }
+        }
+        if (val.isEmpty()) {
+            regCarePhoneNo.setError("Field cannot be empty");
+            return false;
+        } else if (count < 10) {
+            regCarePhoneNo.setError("Invalid Phone Number");
+            return false;
+        } else {
+            regCarePhoneNo.setError(null);
             return true;
         }
     }

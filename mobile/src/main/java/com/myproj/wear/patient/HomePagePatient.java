@@ -12,15 +12,20 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.myproj.wear.R;
 import com.myproj.wear.common.LoginSignup.StartUpScreen;
+import com.myproj.wear.databases.HealthDataDb;
+import com.myproj.wear.databases.LoginDb;
+import com.myproj.wear.helperclasses.HealthDataHelper;
 import com.myproj.wear.helperclasses.homeAdapter.FeaturedAdapter;
 import com.myproj.wear.helperclasses.homeAdapter.FeaturedHelperClass;
 
@@ -35,6 +40,12 @@ public class HomePagePatient extends AppCompatActivity implements NavigationView
     static final float END_SCALE = 0.7f;
     LinearLayout contentView;
 
+    private String username;
+
+    TextView heartRate;
+    TextView bloodPressure;
+    LoginDb loginDb = new LoginDb(this);
+    HealthDataDb healthDataDb = new HealthDataDb(this);
     //Drawer Menu
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -54,10 +65,21 @@ public class HomePagePatient extends AppCompatActivity implements NavigationView
         //hooks
         featuredRecycler = findViewById(R.id.featured_recycler);
         //for menu
+
+        heartRate = findViewById(R.id.heart_rate);
+        bloodPressure = findViewById(R.id.blood_pressure);
+
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
         menu_icon = findViewById(R.id.menu_icon);
         contentView = findViewById(R.id.menu_content);
+
+        Intent i = getIntent();
+        username = i.getStringExtra("patientName");
+        HealthDataHelper healthdata = healthDataDb.getLastUpdatedHealthData(username);
+        Log.d("HEALTHDATA FOR PATIENT","healthdata"+healthdata);
+        heartRate.setText(healthdata.getHeartRateReading());
+        bloodPressure.setText(healthdata.getBpReading());
 
         navigationDrawer();         // popping up nav bar on clicking menu btn
 
@@ -128,6 +150,12 @@ public class HomePagePatient extends AppCompatActivity implements NavigationView
             case R.id.nav_profile:
                 Intent i1 = new Intent(getApplicationContext(),UserProfile.class);
                 startActivity(i1);
+                break;
+            case R.id.nav_logout:
+                Intent i2 = new Intent(getApplicationContext(),PatientLogin.class);
+                startActivity(i2);
+                loginDb.updateActiveUser("F",username);
+                break;
         }
 
         return true;

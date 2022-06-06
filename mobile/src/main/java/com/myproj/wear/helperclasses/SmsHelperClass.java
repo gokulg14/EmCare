@@ -10,27 +10,23 @@ import java.util.List;
 
 public class SmsHelperClass {
 
-    List<String> getNumbers = new ArrayList<>();
-    String message = "Help me";
-    EmNumDb numDb;
 
-    public SmsHelperClass() {
-        Cursor cursor = numDb.GetNum();
-        if (cursor.getCount()>0){
-            while (cursor.moveToNext()){
-                String num = cursor.getString(1);
-                getNumbers.add(num);
-            }
-        }
-        else
-            return;
+
+
+
+    public String sendSMS (String phoneNumber1, String phoneNumber2, String phoneNumber3,String message) {
+        //SmsManager smsManager = SmsManager.getDefault();
+       // smsManager.sendTextMessage(phoneNumber1,null,message,null,null);
+       // smsManager.sendTextMessage(phoneNumber1,null,message,null,null);
+        //smsManager.sendTextMessage(phoneNumber1,null,message,null,null);
+        System.out.println(phoneNumber1);
+        return "SUCCESS";
     }
 
-    public void sendSMS () {
-        SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage(getNumbers.get(0),null,message,null,null);
-        smsManager.sendTextMessage(getNumbers.get(1),null,message,null,null);
-        smsManager.sendTextMessage(getNumbers.get(2),null,message,null,null);
-    }
 
+    public void sendSmsToCareTaker(String phoneNumber,String message) {
+        //SmsManager smsManager = SmsManager.getDefault();
+        System.out.println("SMS message to care taker"+message);
+       // smsManager.sendTextMessage(phoneNumber,null,message,null,null);
+    }
 }
