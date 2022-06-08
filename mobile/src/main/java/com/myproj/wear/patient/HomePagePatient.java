@@ -103,6 +103,7 @@ public class HomePagePatient extends AppCompatActivity implements NavigationView
 
         Intent i = getIntent();
         username = i.getStringExtra("patientName");
+
         HealthDataHelper healthdata = healthDataDb.getLastUpdatedHealthData(username);
         Log.d("HEALTHDATA FOR PATIENT","healthdata"+healthdata);
          if( healthdata.getHeartRateReading()==null) {

@@ -117,7 +117,7 @@ public class SignUp2nd extends AppCompatActivity {
         System.out.println("loginInserted"+loginInserted);
         if (isPatientInserted = true) {
             Toast.makeText(SignUp2nd.this, "Data Inserted", Toast.LENGTH_LONG).show();
-            updateCaretaker(username,careUsername,carePhoneNo);
+            new SmsHelperClass().updateCaretaker(username,careUsername,carePhoneNo,loginDb);
         }
     }
 
@@ -138,26 +138,4 @@ public class SignUp2nd extends AppCompatActivity {
         return gender_select.getText().toString();
     }
 
-    public boolean updateCaretaker(String patieNTnAME , String username,String phoneNumber) {              //????boolean
-        PatientHelperClass careTaker = new PatientHelperClass();
-        careTaker.setUsername(username);
-        String passwordCareTaker = RandomStringUtils.randomAlphabetic(8);
-        careTaker.setPassword(passwordCareTaker);
-        boolean careTakerAdded = false;
-        if(loginDb.insertData(careTaker)) {
-            careTakerAdded = true;
-            StringBuilder sb = new StringBuilder();
-            sb.append(patieNTnAME);
-            sb.append(" is selected you as a care taker ");
-            sb.append(" please try to login with below credentials ");
-            sb.append(" UserName:");
-            sb.append(username);
-            sb.append(",");
-            sb.append(" ");
-            sb.append("PassWord :");
-            sb.append(passwordCareTaker);
-            new SmsHelperClass().sendSmsToCareTaker(phoneNumber,sb.toString(),patieNTnAME);
-        }
-        return careTakerAdded;
-    }
 }

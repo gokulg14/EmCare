@@ -8,6 +8,7 @@ import com.myproj.wear.databases.EmNumDb;
 import com.myproj.wear.databases.LoginDb;
 import com.myproj.wear.databases.SmsLimitHelperDb;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDateTime;
@@ -43,7 +44,7 @@ public class SmsHelperClass {
 
             SmsManager smsManager = SmsManager.getDefault();
             System.out.println("SMS message to care taker" + message);
-            // smsManager.sendTextMessage(phoneNumber,null,message,null,null);
+            smsManager.sendTextMessage(phoneNumber,null,message,null,null);
             String currentDate = LocalDateTime.now().toString();
             smslimit.insertData(currentDate,loginUser);
 
@@ -66,5 +67,28 @@ public class SmsHelperClass {
            return true;
        }
       return false;
+    }
+
+    public boolean updateCaretaker(String patieNTnAME , String username,String phoneNumber,LoginDb loginDb) {              //????boolean
+        PatientHelperClass careTaker = new PatientHelperClass();
+        careTaker.setUsername(username);
+        String passwordCareTaker = RandomStringUtils.randomAlphabetic(8);
+        careTaker.setPassword(passwordCareTaker);
+        boolean careTakerAdded = false;
+        if(loginDb.insertData(careTaker)) {
+            careTakerAdded = true;
+            StringBuilder sb = new StringBuilder();
+            sb.append(patieNTnAME);
+            sb.append(" is selected you as a care taker ");
+            sb.append(" please try to login with below credentials ");
+            sb.append(" UserName:");
+            sb.append(username);
+            sb.append(",");
+            sb.append(" ");
+            sb.append("PassWord :");
+            sb.append(passwordCareTaker);
+            sendSmsToCareTaker(phoneNumber,sb.toString(),patieNTnAME);
+        }
+        return careTakerAdded;
     }
 }

@@ -20,6 +20,7 @@ import com.myproj.wear.databases.HealthDataDb;
 import com.myproj.wear.databases.LoginDb;
 import com.myproj.wear.databases.PatientDb;
 import com.myproj.wear.databases.SmsLimitHelperDb;
+import com.myproj.wear.helperclasses.SmsHelperClass;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -65,6 +66,8 @@ public class UpdateOrDelUserInfo extends AppCompatActivity {
                 String careTakerName =  addDetails.getText().toString().split("-")[0];
                  String careTakerPhonenumber = addDetails.getText().toString().split("-")[1];
                  patientDb.updateHealth(careTakerName,careTakerPhonenumber,"","",username);
+                 new SmsHelperClass().updateCaretaker(username,careTakerName,careTakerPhonenumber,loginDb);
+
              }
              else if (addField!=null && addField.getText().toString().toLowerCase().equals("patientemail") && addDetails!=null) {
                  patientDb.updateHealth("","",addDetails.getText().toString(),"",username);
@@ -74,6 +77,10 @@ public class UpdateOrDelUserInfo extends AppCompatActivity {
                     patientDb.updateHealth("","","",addDetails.getText().toString(),username);
 
                 }
+
+             Intent i = new Intent(getApplicationContext(),HomePagePatient.class);
+                i.putExtra("patientName", username);
+                startActivity(i);
             }
         });
 
