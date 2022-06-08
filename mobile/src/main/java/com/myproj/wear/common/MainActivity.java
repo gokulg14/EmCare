@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     ImageView image;
     TextView logo;
 
-    SharedPreferences onBoardingScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,24 +50,10 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
-                //onBoardingScreen = getSharedPreferences("onBoardingScreen",MODE_PRIVATE);
-                //boolean isFirstTime = onBoardingScreen.getBoolean("firstTime",true);
-
-               // if (isFirstTime){
-                    // first time of the user
-                   // SharedPreferences.Editor editor = onBoardingScreen.edit();
-                  //  editor.putBoolean("firstTime",false);
-                   // editor.commit();
-                   // Intent intent = new Intent(MainActivity.this, OnBoarding.class);
-                   // startActivity(intent);
-                   // finish();
-               // }
-                //else{
+                
                     Intent intent = new Intent(MainActivity.this, StartUpScreen.class);
                     startActivity(intent);
                     finish();
-                //}
             }
         },SPLASH_SCREEN);
     }

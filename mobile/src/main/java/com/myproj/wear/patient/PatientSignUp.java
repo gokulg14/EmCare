@@ -23,7 +23,6 @@ public class PatientSignUp extends AppCompatActivity {
 
     private TextInputLayout regUsername, regEmail, regPhoneNo, regPassword, regConfPassword, regCareUsername, regCarePhoneNo;
     private Button next, backToLogin;
-    PatientHelperClass patientInfo;
     ImageView back_btn;
 
 

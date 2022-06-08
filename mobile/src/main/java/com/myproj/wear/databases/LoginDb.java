@@ -8,6 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.myproj.wear.helperclasses.PatientHelperClass;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LoginDb extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME= "Login.db";
@@ -67,11 +70,18 @@ public class LoginDb extends SQLiteOpenHelper {
         while(cursor.moveToNext()) {
             return cursor.getString(nameIndex);
         }
-       return "NO_ACTIVE_USER";
+       return "NOACTIVEUSER";
     }
 
     public void updateActiveUser(String status,String username) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("UPDATE Patient_Login_table SET ACTIVE = ? WHERE NAME=?" ,new String[]{status,username});
     }
+
+    public void deleteHealthData(String userName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+         db.execSQL("DELETE FROM Patient_Login_table WHERE NAME=?",new String[]{userName});
+    }
+
+
 }

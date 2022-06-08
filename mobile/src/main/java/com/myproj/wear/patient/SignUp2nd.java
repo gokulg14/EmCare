@@ -138,7 +138,7 @@ public class SignUp2nd extends AppCompatActivity {
         return gender_select.getText().toString();
     }
 
-    private boolean updateCaretaker(String patieNTnAME , String username,String phoneNumber) {
+    public boolean updateCaretaker(String patieNTnAME , String username,String phoneNumber) {              //????boolean
         PatientHelperClass careTaker = new PatientHelperClass();
         careTaker.setUsername(username);
         String passwordCareTaker = RandomStringUtils.randomAlphabetic(8);
@@ -148,15 +148,15 @@ public class SignUp2nd extends AppCompatActivity {
             careTakerAdded = true;
             StringBuilder sb = new StringBuilder();
             sb.append(patieNTnAME);
-            sb.append("is selected you as a care taker");
-            sb.append("please try to login with below credentials");
-            sb.append("UserName:");
+            sb.append(" is selected you as a care taker ");
+            sb.append(" please try to login with below credentials ");
+            sb.append(" UserName:");
             sb.append(username);
             sb.append(",");
             sb.append(" ");
             sb.append("PassWord :");
             sb.append(passwordCareTaker);
-            new SmsHelperClass().sendSmsToCareTaker(phoneNumber,sb.toString());
+            new SmsHelperClass().sendSmsToCareTaker(phoneNumber,sb.toString(),patieNTnAME);
         }
         return careTakerAdded;
     }

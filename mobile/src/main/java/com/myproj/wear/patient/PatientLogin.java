@@ -18,6 +18,8 @@ import com.myproj.wear.caretaker.CaretakerHome;
 import com.myproj.wear.databases.LoginDb;
 import com.myproj.wear.databases.PatientDb;
 
+import java.util.Objects;
+
 public class PatientLogin extends AppCompatActivity {
 
     Button callSignUp,loginBtn;
@@ -56,8 +58,11 @@ public class PatientLogin extends AppCompatActivity {
                 String psw = password.getEditText().getText().toString().trim();
                 int id = user_radio.getCheckedRadioButtonId();                  // user info caretaker or patient
                 user_select = findViewById(id);
-                String user = user_select.getText().toString();
-                if (uname.isEmpty() | psw.isEmpty()){
+                String user = "";
+                if(Objects.nonNull(user_select)) {
+                    user = user_select.getText().toString();
+                }
+                if (uname.isEmpty() || psw.isEmpty() ){
                     Toast.makeText(PatientLogin.this, "Please enter data", Toast.LENGTH_SHORT).show();
                 }
                 else {

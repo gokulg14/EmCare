@@ -16,20 +16,26 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.myproj.wear.R;
 import com.myproj.wear.common.LoginSignup.StartUpScreen;
 import com.myproj.wear.databases.HealthDataDb;
 import com.myproj.wear.databases.LoginDb;
+import com.myproj.wear.databases.PatientDb;
 import com.myproj.wear.helperclasses.HealthDataHelper;
+import com.myproj.wear.helperclasses.PatientHelperClass;
 import com.myproj.wear.helperclasses.homeAdapter.FeaturedAdapter;
 import com.myproj.wear.helperclasses.homeAdapter.FeaturedHelperClass;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class HomePagePatient extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -42,6 +48,8 @@ public class HomePagePatient extends AppCompatActivity implements NavigationView
 
     private String username;
 
+    Button changeBtn;
+
     TextView heartRate;
     TextView bloodPressure;
     LoginDb loginDb = new LoginDb(this);
@@ -50,6 +58,15 @@ public class HomePagePatient extends AppCompatActivity implements NavigationView
     DrawerLayout drawerLayout;
     NavigationView navigationView;
 
+    PatientDb patientDb;
+
+    PatientHelperClass patientHelperClass;
+
+    ImageView refresh;
+
+    ImageView editNum;
+
+    TextView profileName,profileMail,profileNum,profileDob,profileGender,profileCtName,profileCtNum;
 
 
     @Override
@@ -73,18 +90,78 @@ public class HomePagePatient extends AppCompatActivity implements NavigationView
         navigationView = findViewById(R.id.navigation_view);
         menu_icon = findViewById(R.id.menu_icon);
         contentView = findViewById(R.id.menu_content);
+        refresh = findViewById(R.id.refresh);
+        changeBtn = findViewById(R.id.change);
+
+        profileName = findViewById(R.id.profile_name);
+        profileMail = findViewById(R.id.profile_email);
+        profileNum = findViewById(R.id.profile_number);
+        profileDob = findViewById(R.id.profile_dob);
+        profileGender = findViewById(R.id.profile_gender);
+        profileCtName = findViewById(R.id.profile_ctName);
+        profileCtNum = findViewById(R.id.profile_ctNum);
 
         Intent i = getIntent();
         username = i.getStringExtra("patientName");
         HealthDataHelper healthdata = healthDataDb.getLastUpdatedHealthData(username);
         Log.d("HEALTHDATA FOR PATIENT","healthdata"+healthdata);
-        heartRate.setText(healthdata.getHeartRateReading());
-        bloodPressure.setText(healthdata.getBpReading());
+         if( healthdata.getHeartRateReading()==null) {
+             heartRate.setText("0.0");
+         }
+
+         if(healthdata.getBpReading()==null) {
+            bloodPressure.setText("0.0");
+        }
+        else{
+            bloodPressure.setText(healthdata.getBpReading());
+            heartRate.setText(healthdata.getHeartRateReading());
+        }
 
         navigationDrawer();         // popping up nav bar on clicking menu btn
 
         featuredRecycler();         // for card view in home
+
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                HealthDataHelper healthdata = healthDataDb.getLastUpdatedHealthData(username);
+                Log.d("HEALTHDATA FOR PATIENT","healthdata"+healthdata);
+                if( healthdata.getHeartRateReading()==null) {
+                    heartRate.setText("0.0");
+                }
+
+                if(healthdata.getBpReading()==null) {
+                    bloodPressure.setText("0.0");
+                }
+                else{
+                    bloodPressure.setText(healthdata.getBpReading());
+                    heartRate.setText(healthdata.getHeartRateReading());
+                }
+            }
+        });
+
+        patientDb = new PatientDb(this);
+        patientHelperClass = new PatientHelperClass();
+        patientHelperClass = patientDb.getUserData(username);
+        profileName.setText("Patient Name: " +patientHelperClass.getUsername());
+        profileMail.setText("Patient Email: " +patientHelperClass.getEmail());
+        profileNum.setText("Patient Number: " +patientHelperClass.getPhoneNo());
+        profileGender.setText("Patient Gender: " +patientHelperClass.getGender());
+        profileDob.setText("Patient Date Of Birth: " +patientHelperClass.getDate_of_birth());
+        profileCtName.setText("Caretaker Name: " +patientHelperClass.getcTName());
+        profileCtNum.setText("Caretaker Number: " +patientHelperClass.getcTNum());
+
+        changeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),UpdateOrDelUserInfo.class);
+                i.putExtra("profileName", username);
+                startActivity(i);
+            }
+        });
     }
+
+
 
     // nav drawer fn
     private void navigationDrawer() {
@@ -145,6 +222,7 @@ public class HomePagePatient extends AppCompatActivity implements NavigationView
 
             case R.id.nav_contacts:
                 Intent i = new Intent(getApplicationContext(),PickContact.class);
+                i.putExtra("username", username);
                 startActivity(i);
                 break;
             case R.id.nav_profile:

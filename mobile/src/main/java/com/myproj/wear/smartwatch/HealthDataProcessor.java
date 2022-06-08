@@ -27,7 +27,7 @@ import java.util.Set;
 
 public class HealthDataProcessor extends Activity {
 
-    SmsHelperClass smsHelperClass;
+    SmsHelperClass smsHelperClass=new SmsHelperClass();
 
     private final String PRESSURE_KEY = "android.sensor.pressure";
 
@@ -54,7 +54,7 @@ public class HealthDataProcessor extends Activity {
 
             Double averagePressure = Objects.nonNull(pressureData)?pressureData.stream().mapToDouble(pressure->Double.parseDouble(pressure)).average().getAsDouble():0;
             Double averageGravity =  Objects.nonNull(gravityData)?gravityData.stream().mapToDouble(pressure->Double.parseDouble(pressure)).average().getAsDouble():0;
-            Double averageHeartdata =  Objects.nonNull(heartBeatData)?heartBeatData.stream().mapToDouble(pressure->Double.parseDouble(pressure)).average().getAsDouble():0;
+            Double averageHeartdata =  Objects.nonNull(heartBeatData)?heartBeatData.stream().mapToDouble(pressure->Double.parseDouble(pressure)).average().getAsDouble():72;
 
             Log.d("INPUT","averagePressure"+averagePressure);
             Log.d("INPUT","averageGravity"+averageGravity);
@@ -72,8 +72,8 @@ public class HealthDataProcessor extends Activity {
                 Log.d("OUTPUT","emNumberHelpers"+emNumberHelpers);
                 String activeUserStatus = loginDb.getActiveUserStatus();
                 Log.d("LOGINUSER","activeUserStatus"+activeUserStatus);
-                String operationStatus =  "NO_ACTIVE_USER".equals(activeUserStatus)?
-                        smsHelperClass.sendSMS(emNumberHelpers.get(0).getNumber(),emNumberHelpers.get(1).getNumber(),emNumberHelpers.get(2).getNumber(),"Emergency please help The person is weak")
+                String operationStatus =  "NOACTIVEUSER".equals(activeUserStatus)?
+                        smsHelperClass.sendSMS(emNumberHelpers.get(0).getNumber(),emNumberHelpers.get(1).getNumber(),emNumberHelpers.get(2).getNumber(),"Emergency please help The person is weak",activeUserStatus)
                         :healthDataUpdation(activeUserStatus,averageHeartdata,averageGravity,averagePressure,timeData.get(0));
                 Log.d("OUTPUT","operationStatus"+operationStatus);
             }
@@ -93,7 +93,7 @@ public class HealthDataProcessor extends Activity {
         SmsHelperClass smsHelperClass = new SmsHelperClass();
         String careTakerPhoneNumber = patientDb.getCareTakerPhoneNumber(userName);
         Log.d("CARETAKER", "careTakerName" + careTakerPhoneNumber);
-        smsHelperClass.sendSmsToCareTaker(careTakerPhoneNumber, "The Patient" + userName + "Need Help, His condition is bad");
+        smsHelperClass.sendSMS(careTakerPhoneNumber,"","","The Patient" + userName + "Need Help, His condition is bad",userName);
         boolean healthDataInserted = false;
         if (!healthDataDb.checkDuplicate(userName,heartData,gravityData,pressureData)) {
         healthDataInserted = healthDataDb.insertData(userName, heartData,pressureData, gravityData, time);

@@ -5,8 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.myproj.wear.helperclasses.HealthDataHelper;
+
+import org.apache.commons.lang3.ObjectUtils;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,6 +17,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -94,13 +98,24 @@ public class HealthDataDb extends SQLiteOpenHelper {
 
     public HealthDataHelper getLastUpdatedHealthData(String userName) {
         List<HealthDataHelper> healthdata = getHealthData(userName);
-        Map<LocalDateTime,HealthDataHelper> healthMap = new HashMap<>();
+        Log.d("HEALTH DATA","healthdata"+healthdata);
+        Map<LocalDateTime, HealthDataHelper> healthMap = new HashMap<>();
         List<LocalDateTime> dates = new ArrayList<>();
-        for(HealthDataHelper health:healthdata) {
-            dates.add(LocalDateTime.parse(health.getDate()));
-            healthMap.put(LocalDateTime.parse(health.getDate()),health);
+        if(Objects.nonNull(healthdata) && !healthdata.isEmpty()) {
+            for (HealthDataHelper health : healthdata) {
+                dates.add(LocalDateTime.parse(health.getDate()));
+                healthMap.put(LocalDateTime.parse(health.getDate()), health);
+            }
+            if(Objects.nonNull(dates)) {
+                return healthMap.get(Collections.max(dates));
+            }
         }
-        return healthMap.get(Collections.max(dates));
+        return new HealthDataHelper();
+    }
+
+    public void deleteHealthData(String userName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM Health_table WHERE NAME=?",new String[]{userName});
     }
 
 }

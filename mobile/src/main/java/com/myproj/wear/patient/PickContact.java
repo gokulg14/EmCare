@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.myproj.wear.R;
 import com.myproj.wear.databases.EmNumDb;
+import com.myproj.wear.databases.LoginDb;
 import com.myproj.wear.helperclasses.EmNumberHelper;
 
 import java.util.ArrayList;
@@ -37,12 +38,16 @@ public class PickContact extends AppCompatActivity {
     FloatingActionButton bf1;
     Button toDB;
 
+    private String username;
+
     RelativeLayout contact1, contact2, contact3;
 
     public static final int CONTACT_PERMISSION_CODE = 1;
     public static final int CONTACT_PICK_CODE = 2;
 
     private int count = 0;
+
+    LoginDb loginDb = new LoginDb(this);
 
     List<String> numbers = new ArrayList<>();
     List<String> names = new ArrayList<>();
@@ -75,6 +80,9 @@ public class PickContact extends AppCompatActivity {
         contact2 = findViewById(R.id.contact_view1);
         contact3 = findViewById(R.id.contact_view2);
 
+        Intent i = getIntent();
+        username = i.getStringExtra("username");
+
         numDb = new EmNumDb(this);  // Constructor is called and database is created
 
         //adding num from contacts part
@@ -97,7 +105,8 @@ public class PickContact extends AppCompatActivity {
     }
 
     public void backtoHome(View view) {
-        startActivity(new Intent(getApplicationContext(), HomePagePatient.class));
+        startActivity(new Intent(getApplicationContext(), PatientLogin.class));
+        loginDb.updateActiveUser("F",username);
     }
 
     private boolean checkConPermission() {

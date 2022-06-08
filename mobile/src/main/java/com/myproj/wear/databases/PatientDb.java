@@ -8,6 +8,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.myproj.wear.helperclasses.PatientHelperClass;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class PatientDb extends SQLiteOpenHelper {
@@ -20,6 +24,7 @@ public class PatientDb extends SQLiteOpenHelper {
         public static final String COL_5= "CTNUM";
         public static final String COL_6= "GENDER";
         public static final String COL_7= "DOB";
+
 
         public PatientDb(Context context) {
             super(context, DATABASE_NAME, null, 1 );
@@ -88,6 +93,52 @@ public class PatientDb extends SQLiteOpenHelper {
             return cursor.getString(careTakerNumber);
         }
         return "";
+    }
+
+    public PatientHelperClass getUserData(String name){
+        SQLiteDatabase careTakerInfo = this.getWritableDatabase();
+        Cursor cursor = careTakerInfo.rawQuery("SELECT * FROM Patient_table WHERE NAME=?",new String[]{name});
+        Integer uSERnAMEIndex = cursor.getColumnIndex(COL_1);
+        Integer userNum = cursor.getColumnIndex(COL_3);
+        Integer userEmail = cursor.getColumnIndex(COL_2);
+        Integer ctName = cursor.getColumnIndex(COL_4);
+        Integer ctNum = cursor.getColumnIndex(COL_5);
+        Integer gender = cursor.getColumnIndex(COL_6);
+        Integer dob = cursor.getColumnIndex(COL_7);
+        PatientHelperClass getUser = new PatientHelperClass();
+        while(cursor.moveToNext()){
+            getUser.setUsername(cursor.getString(uSERnAMEIndex));
+            getUser.setPhoneNo(cursor.getString(userNum));
+            getUser.setEmail(cursor.getString(userEmail));
+            getUser.setcTName(cursor.getString(ctName));
+            getUser.setcTNum(cursor.getString(ctNum));
+            getUser.setGender(cursor.getString(gender));
+            getUser.setDate_of_birth(cursor.getString(dob));
+            break;
+        }
+
+        return getUser;
+    }
+
+    public void deletePatient(String userName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM Patient_table WHERE NAME=?",new String[]{userName});
+    }
+
+    public void updateHealth(String careTakerName, String careTakerNumber, String patientEmailId, String patientNumber,String userName){
+        SQLiteDatabase db = this.getWritableDatabase();
+        if(StringUtils.isNotEmpty(careTakerName) && StringUtils.isNotEmpty(careTakerNumber)){
+            db.execSQL("UPDATE Patient_table SET CTNAME=? , CTNUM =? WHERE NAME=?",new String[]{careTakerName,careTakerNumber,userName});
+
+
+        }
+        else if (StringUtils.isNotEmpty(patientEmailId)) {
+            db.execSQL("UPDATE Patient_table SET EMAIL=? WHERE NAME=?",new String[]{patientEmailId,userName});
+        }
+        else if (StringUtils.isNotEmpty(patientNumber)) {
+            db.execSQL("UPDATE Patient_table SET NUMBER=? WHERE NAME=?",new String[]{patientNumber,userName});
+        }
+
     }
 
 }

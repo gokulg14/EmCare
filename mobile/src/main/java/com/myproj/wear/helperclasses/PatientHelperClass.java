@@ -4,6 +4,10 @@ public class PatientHelperClass {
 
     private String username, email, phoneNo, password, gender, date_of_birth, cTName, cTNum,active;
 
+
+
+
+
     public PatientHelperClass() {
     }
 

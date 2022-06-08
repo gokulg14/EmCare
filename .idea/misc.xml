@@ -14,8 +14,10 @@
         <entry key="..\:/Users/gouth/AndroidStudioProjects/wear/mobile/src/main/res/drawable/ic_person_add.xml" value="0.176" />
         <entry key="..\:/Users/gouth/AndroidStudioProjects/wear/mobile/src/main/res/font/alegreya_sans_thin.xml" value="0.28020833333333334" />
         <entry key="..\:/Users/gouth/AndroidStudioProjects/wear/mobile/src/main/res/font/alike_angular.xml" value="0.27589743589743587" />
-        <entry key="..\:/Users/gouth/AndroidStudioProjects/wear/mobile/src/main/res/layout/activity_home_page_patient.xml" value="0.24377856780091417" />
+        <entry key="..\:/Users/gouth/AndroidStudioProjects/wear/mobile/src/main/res/layout/activity_caretaker_home.xml" value="0.2" />
+        <entry key="..\:/Users/gouth/AndroidStudioProjects/wear/mobile/src/main/res/layout/activity_home_page_patient.xml" value="0.264" />
         <entry key="..\:/Users/gouth/AndroidStudioProjects/wear/mobile/src/main/res/layout/activity_main.xml" value="0.2359375" />
+        <entry key="..\:/Users/gouth/AndroidStudioProjects/wear/mobile/src/main/res/layout/activity_main2.xml" value="0.19581017528858485" />
         <entry key="..\:/Users/gouth/AndroidStudioProjects/wear/mobile/src/main/res/layout/activity_on_boarding.xml" value="0.264" />
         <entry key="..\:/Users/gouth/AndroidStudioProjects/wear/mobile/src/main/res/layout/activity_patient_login.xml" value="0.25" />
         <entry key="..\:/Users/gouth/AndroidStudioProjects/wear/mobile/src/main/res/layout/activity_patient_sign_up.xml" value="0.25" />
@@ -23,8 +25,10 @@
         <entry key="..\:/Users/gouth/AndroidStudioProjects/wear/mobile/src/main/res/layout/activity_sign_up2nd.xml" value="0.25" />
         <entry key="..\:/Users/gouth/AndroidStudioProjects/wear/mobile/src/main/res/layout/activity_sign_up3rd.xml" value="0.25" />
         <entry key="..\:/Users/gouth/AndroidStudioProjects/wear/mobile/src/main/res/layout/activity_start_up_screen.xml" value="0.25" />
+        <entry key="..\:/Users/gouth/AndroidStudioProjects/wear/mobile/src/main/res/layout/activity_update_or_del_user_info.xml" value="0.19581017528858485" />
         <entry key="..\:/Users/gouth/AndroidStudioProjects/wear/mobile/src/main/res/layout/activity_user_profile.xml" value="0.25" />
         <entry key="..\:/Users/gouth/AndroidStudioProjects/wear/mobile/src/main/res/layout/featured_card_design.xml" value="0.25" />
+        <entry key="..\:/Users/gouth/AndroidStudioProjects/wear/mobile/src/main/res/layout/items_list.xml" value="0.19581017528858485" />
         <entry key="..\:/Users/gouth/AndroidStudioProjects/wear/mobile/src/main/res/layout/menu_header.xml" value="0.264" />
         <entry key="..\:/Users/gouth/AndroidStudioProjects/wear/mobile/src/main/res/layout/slides_layout.xml" value="0.25" />
         <entry key="..\:/Users/gouth/AndroidStudioProjects/wear/mobile/src/main/res/menu/main_menu.xml" value="0.25" />
