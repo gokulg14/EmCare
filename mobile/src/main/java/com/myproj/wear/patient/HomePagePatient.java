@@ -52,6 +52,7 @@ public class HomePagePatient extends AppCompatActivity implements NavigationView
 
     TextView heartRate;
     TextView bloodPressure;
+    TextView motionSensor;
     LoginDb loginDb = new LoginDb(this);
     HealthDataDb healthDataDb = new HealthDataDb(this);
     //Drawer Menu
@@ -85,6 +86,7 @@ public class HomePagePatient extends AppCompatActivity implements NavigationView
 
         heartRate = findViewById(R.id.heart_rate);
         bloodPressure = findViewById(R.id.blood_pressure);
+        motionSensor = findViewById(R.id.motionSensor);
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
@@ -113,9 +115,14 @@ public class HomePagePatient extends AppCompatActivity implements NavigationView
          if(healthdata.getBpReading()==null) {
             bloodPressure.setText("0.0");
         }
+
+         if (healthdata.getMotionSensorReading()==null){
+             motionSensor.setText("0.0");
+         }
         else{
             bloodPressure.setText(healthdata.getBpReading());
             heartRate.setText(healthdata.getHeartRateReading());
+            motionSensor.setText(healthdata.getMotionSensorReading());
         }
 
         navigationDrawer();         // popping up nav bar on clicking menu btn

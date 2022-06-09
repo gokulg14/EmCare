@@ -73,7 +73,7 @@ public class HealthDataProcessor extends Activity {
                 String activeUserStatus = loginDb.getActiveUserStatus();
                 Log.d("LOGINUSER","activeUserStatus"+activeUserStatus);
                 String operationStatus =  "NOACTIVEUSER".equals(activeUserStatus)?
-                        smsHelperClass.sendSMS(emNumberHelpers.get(0).getNumber(),emNumberHelpers.get(1).getNumber(),emNumberHelpers.get(2).getNumber(),"Emergency please help The person is weak",activeUserStatus)
+                        smsHelperClass.sendSMS(emNumberHelpers.get(0).getNumber(),emNumberHelpers.get(1).getNumber(),emNumberHelpers.get(2).getNumber()," Emergency please help The person is weak ",activeUserStatus)
                         :healthDataUpdation(activeUserStatus,averageHeartdata,averageGravity,averagePressure,timeData.get(0));
                 Log.d("OUTPUT","operationStatus"+operationStatus);
             }
@@ -93,7 +93,7 @@ public class HealthDataProcessor extends Activity {
         SmsHelperClass smsHelperClass = new SmsHelperClass();
         String careTakerPhoneNumber = patientDb.getCareTakerPhoneNumber(userName);
         Log.d("CARETAKER", "careTakerName" + careTakerPhoneNumber);
-        smsHelperClass.sendSMS(careTakerPhoneNumber,"","","The Patient" + userName + "Need Help, His condition is bad",userName);
+        smsHelperClass.sendSMSEmergencyCareTaker(careTakerPhoneNumber,"The Patient" + userName + "Need Help, His condition is bad",userName);
         boolean healthDataInserted = false;
         if (!healthDataDb.checkDuplicate(userName,heartData,gravityData,pressureData)) {
         healthDataInserted = healthDataDb.insertData(userName, heartData,pressureData, gravityData, time);

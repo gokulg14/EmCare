@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.myproj.wear.R;
 import com.myproj.wear.databases.HealthDataDb;
 import com.myproj.wear.helperclasses.HealthDataHelper;
+import com.myproj.wear.patient.PatientLogin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,5 +118,10 @@ public class CaretakerHome extends AppCompatActivity {
 
         }
 
+    }
+
+    public void backToLoginFromCaretaker(View view){
+        Intent i = new Intent(getApplicationContext(), PatientLogin.class);
+        startActivity(i);
     }
 }

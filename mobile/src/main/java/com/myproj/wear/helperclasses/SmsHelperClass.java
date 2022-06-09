@@ -35,7 +35,20 @@ public class SmsHelperClass {
             String currentDate = LocalDateTime.now().toString();
             smslimit.updateSmsCount(currentDate,loginUser);
         }
-        System.out.println(phoneNumber1);
+        return "SUCCESS";
+    }
+
+    public String sendSMSEmergencyCareTaker (String phoneNumber1,String message,String loginUser) {
+        if(SMScountValidation(loginUser)) {
+            SmsManager smsManager = SmsManager.getDefault();
+            //smsManager.sendTextMessage(phoneNumber1,null,message,null,null);
+            // smsManager.sendTextMessage(phoneNumber2,null,message,null,null);
+            //smsManager.sendTextMessage(phoneNumber3,null,message,null,null);
+            Log.d("SMS SENDING","SMS TO CARE TAKER");
+            Log.d("CARE TAKER NUMBER",message +" send to number " +phoneNumber1);
+            String currentDate = LocalDateTime.now().toString();
+            smslimit.updateSmsCount(currentDate,loginUser);
+        }
         return "SUCCESS";
     }
 
@@ -44,7 +57,12 @@ public class SmsHelperClass {
 
             SmsManager smsManager = SmsManager.getDefault();
             System.out.println("SMS message to care taker" + message);
-            smsManager.sendTextMessage(phoneNumber,null,message,null,null);
+            try {
+                smsManager.sendTextMessage(phoneNumber, null, message, null, null);
+            }
+            catch (Exception e) {
+                Log.d("SMS SECURITY","SECURITY ISSUE");
+            }
             String currentDate = LocalDateTime.now().toString();
             smslimit.insertData(currentDate,loginUser);
 

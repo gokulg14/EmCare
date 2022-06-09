@@ -135,7 +135,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/profile_email"
-                        android:drawableStart="@drawable/ic_baseline_person"
+                        android:drawableStart="@drawable/email_icon"
                         android:drawableTint="@color/black"
                         android:textSize="20sp" />
 
@@ -149,7 +149,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/profile_number"
-                        android:drawableStart="@drawable/ic_baseline_person"
+                        android:drawableStart="@drawable/phone_icon"
                         android:drawableTint="@color/black"
                         android:textSize="20sp" />
 
@@ -163,7 +163,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/profile_gender"
-                        android:drawableStart="@drawable/ic_baseline_person"
+                        android:drawableStart="@drawable/gender_icon"
                         android:drawableTint="@color/black"
                         android:textSize="20sp" />
 
@@ -177,7 +177,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/profile_dob"
-                        android:drawableStart="@drawable/ic_baseline_person"
+                        android:drawableStart="@drawable/dob_icon"
                         android:drawableTint="@color/black"
                         android:textSize="20sp" />
 
@@ -217,12 +217,13 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp">
 
                         <Button
+                            android:id="@+id/change"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/change"
                             android:layout_centerInParent="true"
                             android:background="#00000000"
                             android:drawableTop="@drawable/write_icon"
@@ -372,7 +373,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/alike_angular"
-                        android:text="@string/Heart_rate"
+                        android:text="Motion"
                         android:layout_weight="1"
                         android:textAllCaps="true"
                         android:textColor="@color/color_features"
@@ -412,6 +413,7 @@
                         <TextView
                             android:layout_width="100dp"
                             android:layout_height="50dp"
+                            android:id="@+id/motionSensor"
                             android:layout_marginTop="10dp"
                             android:layout_alignParentBottom="true"
                             android:layout_alignParentRight="true"/>
