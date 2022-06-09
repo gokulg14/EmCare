@@ -29,7 +29,7 @@ import java.util.Objects;
 public class UpdateOrDelUserInfo extends AppCompatActivity {
 
     Button update,delete;
-    EditText addField,addDetails;
+    //EditText addField,addDetails;
     String username;
 
     PatientDb patientDb;
@@ -40,17 +40,29 @@ public class UpdateOrDelUserInfo extends AppCompatActivity {
 
     SmsLimitHelperDb smsLimitHelperDb;
 
+    String userOrCaretaker;
+
+    TextInputLayout textInputLayout;
+    AutoCompleteTextView autoCompleteTextView;
+    EditText selected;
+    EditText selected1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_update_or_del_user_info);
 
-        addField = findViewById(R.id.getData);
-        addDetails = findViewById(R.id.getData1);
+       // addField = findViewById(R.id.getData);
+      //  addDetails = findViewById(R.id.getData1);
 
         update = findViewById(R.id.update);
         delete = findViewById(R.id.delete_data);
+
+        textInputLayout = findViewById(R.id.menu_drop);
+        autoCompleteTextView = findViewById(R.id.drop_items);
+        selected = findViewById(R.id.input1);
+        selected1 = findViewById(R.id.input2);
 
         Intent i = getIntent();
         username = i.getStringExtra("profileName");
@@ -59,7 +71,65 @@ public class UpdateOrDelUserInfo extends AppCompatActivity {
         loginDb = new LoginDb(this);
         smsLimitHelperDb = new SmsLimitHelperDb(this);
         healthdataDb = new HealthDataDb(this);
+
+        String [] items={"Caretaker","Patient Email","Patient Number"};
+        ArrayAdapter<String> itemAdapter = new ArrayAdapter<>(UpdateOrDelUserInfo.this,R.layout.dropdown_list, items);
+        autoCompleteTextView.setAdapter(itemAdapter);
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                userOrCaretaker = parent.getItemAtPosition(position).toString();
+                switch (position){
+                    case 0://patient change
+                        selected.setVisibility(View.VISIBLE);
+                        selected1.setVisibility(View.VISIBLE);
+                        selected.setHint("Enter Caretaker Name");
+                        selected1.setHint("Enter Caretaker Number");
+
+                        break;
+                    case 1://Patient Email
+                        selected.setVisibility(View.VISIBLE);
+                        selected1.setVisibility(View.INVISIBLE);
+                        selected.setHint("Enter Patient Email");
+
+                        break;
+                    case 2://Patient Number
+                        selected.setVisibility(View.VISIBLE);
+                        selected.setHint("Enter Patient Number");
+
+                        break;
+                }
+            }
+        });
+
         update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println(userOrCaretaker);
+             if(userOrCaretaker!=null && userOrCaretaker.toString().toLowerCase().equals("caretaker") /*&& addDetails!=null*/){
+
+                String careTakerName =  selected.getText().toString();
+                 String careTakerPhonenumber = selected1.getText().toString();
+                 patientDb.updateHealth(careTakerName,careTakerPhonenumber,"","",username);
+                 new SmsHelperClass().updateCaretaker(username,careTakerName,careTakerPhonenumber,loginDb);
+
+             }
+             else if (userOrCaretaker!=null && userOrCaretaker.toString().toLowerCase().equals("patient email") /*&& addDetails!=null*/) {
+                 patientDb.updateHealth("","",selected.getText().toString(),"",username);
+
+             }
+             else if((userOrCaretaker!=null && userOrCaretaker.toString().toLowerCase().equals("patient number") /*&& addDetails!=null*/)) {
+                    patientDb.updateHealth("","","",selected.getText().toString(),username);
+
+                }
+
+             Intent i = new Intent(getApplicationContext(),HomePagePatient.class);
+                i.putExtra("patientName", username);
+                startActivity(i);
+            }
+        });
+
+        /*update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
              if(addField!=null && addField.getText().toString().toLowerCase().equals("caretaker") && addDetails!=null){
@@ -82,7 +152,7 @@ public class UpdateOrDelUserInfo extends AppCompatActivity {
                 i.putExtra("patientName", username);
                 startActivity(i);
             }
-        });
+        });*/
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
