@@ -1,6 +1,7 @@
 package com.myproj.wear.patient;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -39,6 +41,7 @@ import java.util.Objects;
 
 public class HomePagePatient extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
+
     // variables
     RecyclerView featuredRecycler;
     RecyclerView.Adapter adapter;
@@ -64,8 +67,6 @@ public class HomePagePatient extends AppCompatActivity implements NavigationView
     PatientHelperClass patientHelperClass;
 
     ImageView refresh;
-
-    ImageView editNum;
 
     TextView profileName,profileMail,profileNum,profileDob,profileGender,profileCtName,profileCtNum;
 
@@ -233,10 +234,6 @@ public class HomePagePatient extends AppCompatActivity implements NavigationView
                 i.putExtra("username", username);
                 startActivity(i);
                 break;
-            case R.id.nav_profile:
-                Intent i1 = new Intent(getApplicationContext(),UserProfile.class);
-                startActivity(i1);
-                break;
             case R.id.nav_logout:
                 Intent i2 = new Intent(getApplicationContext(),PatientLogin.class);
                 startActivity(i2);
@@ -256,10 +253,12 @@ public class HomePagePatient extends AppCompatActivity implements NavigationView
         ArrayList<FeaturedHelperClass> features = new ArrayList<>();
 
         features.add(new FeaturedHelperClass(R.drawable.smartwatch_card_img,"Smartwatch Pairing","Pair with smart watch and get your health data"));
-        features.add(new FeaturedHelperClass(R.drawable.card_emergency,"Instead Medical Support","Call/SMS ambulance on emergency situations with your location"));
+        features.add(new FeaturedHelperClass(R.drawable.card_emergency,"Instead Medical Support","Can send SMS automatically on emergency situations"));
         features.add(new FeaturedHelperClass(R.drawable.card_monitor,"Caretaker can monitor your health","Caretaker can monitor your health from anywhere"));
+        features.add(new FeaturedHelperClass(R.drawable.relax_oldman,"Just Relax","We will handle everything for you, As you have the app in your pocket and paired with your smartwatch you don't have to worry"));
 
         adapter = new FeaturedAdapter(features);            //passing arraylist
         featuredRecycler.setAdapter(adapter);
     }
+
 }

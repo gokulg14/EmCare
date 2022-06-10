@@ -84,11 +84,6 @@ public class SignUp2nd extends AppCompatActivity {
         });
     }
 
-    public void backToPreviousSignUp(View view){
-        Intent i = new Intent(getApplicationContext(),PatientSignUp.class);
-        startActivity(i);
-    }
-
     //send data to db
     private void addDataToDatabase(){
 

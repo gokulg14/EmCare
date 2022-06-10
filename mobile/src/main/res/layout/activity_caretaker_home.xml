@@ -23,10 +23,75 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginRight="30dp"
                     android:onClick="backToLoginFromCaretaker"
                     android:src="@drawable/logout_icon" />
 
             </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/app_name_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="serif-monospace"
+                    android:textStyle="bold"
+                    android:text="@string/app_name_homepage"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_below="@id/app_name_home"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@color/white"
+                    android:elevation="8dp">
+
+                    <TextView
+                        android:id="@+id/heading_home"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:text="@string/home_heading" />
+
+                    <TextView
+                        android:id="@+id/home_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/heading_home"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="100dp"
+                        android:textColor="@color/black"
+                        android:textStyle="italic"
+                        android:text="@string/home_desc" />
+
+                    <ImageView
+                        android:layout_width="90dp"
+                        android:layout_height="80dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="230dp"
+                        android:src="@drawable/caretaker" />
+
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
             <TableLayout
                 android:id="@+id/health_data_table"
@@ -39,6 +104,8 @@
                 android:background="@color/white">
 
             </TableLayout>
+
+            </HorizontalScrollView>
 
         </LinearLayout>
 

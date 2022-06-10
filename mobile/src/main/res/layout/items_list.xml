@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:text="Samples"
     android:padding="18dp"
+    android:textColor="@color/black"
     android:layout_margin="2dp">
 
 </TextView>

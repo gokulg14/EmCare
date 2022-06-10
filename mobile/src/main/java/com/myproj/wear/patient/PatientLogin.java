@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputLayout;
 import com.myproj.wear.R;
 import com.myproj.wear.caretaker.CaretakerHome;
+import com.myproj.wear.common.LoginSignup.StartUpScreen;
 import com.myproj.wear.databases.LoginDb;
 import com.myproj.wear.databases.PatientDb;
 
@@ -90,6 +91,12 @@ public class PatientLogin extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void backToStartUp(View view){
+        Intent i = new Intent(getApplicationContext(), StartUpScreen.class);
+        startActivity(i);
+        finish();
     }
 
 }

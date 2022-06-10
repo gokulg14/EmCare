@@ -44,8 +44,8 @@ public class UpdateOrDelUserInfo extends AppCompatActivity {
 
     TextInputLayout textInputLayout;
     AutoCompleteTextView autoCompleteTextView;
-    EditText selected;
-    EditText selected1;
+    TextInputLayout selected;
+    TextInputLayout selected1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +72,7 @@ public class UpdateOrDelUserInfo extends AppCompatActivity {
         smsLimitHelperDb = new SmsLimitHelperDb(this);
         healthdataDb = new HealthDataDb(this);
 
-        String [] items={"Caretaker","Patient Email","Patient Number"};
+        String [] items={"Caretaker","Patient Email","Patient Number","Delete Account"};
         ArrayAdapter<String> itemAdapter = new ArrayAdapter<>(UpdateOrDelUserInfo.this,R.layout.dropdown_list, items);
         autoCompleteTextView.setAdapter(itemAdapter);
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -80,9 +80,10 @@ public class UpdateOrDelUserInfo extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 userOrCaretaker = parent.getItemAtPosition(position).toString();
                 switch (position){
-                    case 0://patient change
+                    case 0://caretaker change
                         selected.setVisibility(View.VISIBLE);
                         selected1.setVisibility(View.VISIBLE);
+                        update.setVisibility(View.VISIBLE);
                         selected.setHint("Enter Caretaker Name");
                         selected1.setHint("Enter Caretaker Number");
 
@@ -90,12 +91,22 @@ public class UpdateOrDelUserInfo extends AppCompatActivity {
                     case 1://Patient Email
                         selected.setVisibility(View.VISIBLE);
                         selected1.setVisibility(View.INVISIBLE);
+                        update.setVisibility(View.VISIBLE);
                         selected.setHint("Enter Patient Email");
 
                         break;
                     case 2://Patient Number
                         selected.setVisibility(View.VISIBLE);
+                        selected1.setVisibility(View.INVISIBLE);
+                        update.setVisibility(View.VISIBLE);
                         selected.setHint("Enter Patient Number");
+
+                        break;
+                    case 3://Account Delete
+                        delete.setVisibility(View.VISIBLE);
+                        selected.setVisibility(View.INVISIBLE);
+                        selected1.setVisibility(View.INVISIBLE);
+                        update.setVisibility(View.INVISIBLE);
 
                         break;
                 }
@@ -108,18 +119,18 @@ public class UpdateOrDelUserInfo extends AppCompatActivity {
                 System.out.println(userOrCaretaker);
              if(userOrCaretaker!=null && userOrCaretaker.toString().toLowerCase().equals("caretaker") /*&& addDetails!=null*/){
 
-                String careTakerName =  selected.getText().toString();
-                 String careTakerPhonenumber = selected1.getText().toString();
+                String careTakerName =  selected.getEditText().getText().toString();
+                 String careTakerPhonenumber = selected1.getEditText().getText().toString();
                  patientDb.updateHealth(careTakerName,careTakerPhonenumber,"","",username);
                  new SmsHelperClass().updateCaretaker(username,careTakerName,careTakerPhonenumber,loginDb);
 
              }
              else if (userOrCaretaker!=null && userOrCaretaker.toString().toLowerCase().equals("patient email") /*&& addDetails!=null*/) {
-                 patientDb.updateHealth("","",selected.getText().toString(),"",username);
+                 patientDb.updateHealth("","",selected.getEditText().getText().toString(),"",username);
 
              }
              else if((userOrCaretaker!=null && userOrCaretaker.toString().toLowerCase().equals("patient number") /*&& addDetails!=null*/)) {
-                    patientDb.updateHealth("","","",selected.getText().toString(),username);
+                    patientDb.updateHealth("","","",selected.getEditText().getText().toString(),username);
 
                 }
 
@@ -162,6 +173,7 @@ public class UpdateOrDelUserInfo extends AppCompatActivity {
                     loginDb.deleteHealthData(username);
                     healthdataDb.deleteHealthData(username);
                     smsLimitHelperDb.deleteHealthData(username);
+                    Toast.makeText(getApplicationContext(),"Account Deleted",Toast.LENGTH_LONG).show();
                     Intent i = new Intent(getApplicationContext(), StartUpScreen.class);
                      startActivity(i);
 

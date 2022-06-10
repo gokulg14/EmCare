@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".patient.UpdateOrDelUserInfo">
+    tools:context=".patient.UpdateOrDelUserInfo"
+    android:background="@color/yellow">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -70,35 +71,68 @@
                 android:layout_height="match_parent"
                 android:id="@+id/drop_items"
                 android:layout_weight="1"
+                android:enabled="false"
                 android:inputType="none"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input1"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp" />
-
-        <EditText
-            android:id="@+id/input2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            app:startIconDrawable="@drawable/write_icon"
+            app:startIconTint="@color/black"
+            app:hintTextColor="@color/black"
+            android:textColorHint="@color/black"
+            app:boxStrokeWidthFocused="2dp"
             android:layout_marginTop="30dp"
-            android:visibility="invisible"/>
+            app:boxStrokeColor="@color/black"
+            android:visibility="invisible">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input2"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:startIconDrawable="@drawable/write_icon"
+            app:startIconTint="@color/black"
+            app:hintTextColor="@color/black"
+            android:textColorHint="@color/black"
+            app:boxStrokeWidthFocused="2dp"
+            android:layout_marginTop="30dp"
+            app:boxStrokeColor="@color/black"
+            android:visibility="invisible">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Update"
             android:layout_marginTop="10dp"
-            android:id="@+id/update" />
+            android:id="@+id/update"
+            android:visibility="invisible"
+            android:background="#00000000"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:background="#00000000"
             android:text="Delete"
+            android:visibility="invisible"
             android:id="@+id/delete_data" />
 
     </LinearLayout>

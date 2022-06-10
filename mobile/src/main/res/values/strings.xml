@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">wear</string>
+    <string name="app_name">Emcare</string>
 
     <!--Titles-->
     <string name="first_slide_title">Pair With Smartwatch</string>
@@ -21,10 +21,12 @@
 
     <string name="app_name_homepage">EmCare</string>
     <string name="home_heading">You and Me</string>
-    <string name="home_desc">You can see he/she\'s location information and health data! Come and see he/she!</string>
+    <string name="home_desc">You can see he/she\'s health data! \nCome and see it</string>
+    <string name="patient_home_desc">You can see he/she\'s last updated health data! Come and see it</string>
     <string name="features">Features we can provide to you</string>
     <string name="Heart_rate">Heart Rate</string>
     <string name="Bp">Blood Pressure</string>
+    <string name="motion">Motion Sensor</string>
 
     <string name="home">HOME</string>
     <string name="contacts">ADD CONTACTS</string>
