@@ -225,7 +225,7 @@ cd wear
 
 ## 📱 Screenshots
 
-*[Add screenshots of key application screens here]*
+
 
 ## 🤝 Contributing
 
@@ -235,13 +235,10 @@ cd wear
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 👥 Authors
 
-- **Your Name** - *Initial work* - [YourGitHub](https://github.com/yourusername)
+- **Your Name** - *Initial work* - [Gokul](https://github.com/gokulg14)
 
 ## 🙏 Acknowledgments
 
@@ -253,7 +250,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For support and questions:
 - Create an issue in the repository
-- Contact: [your-email@example.com]
+- Contact: gokulgnair777@gmail.com
 
 ## 🔮 Future Enhancements
 
@@ -268,4 +265,7 @@ For support and questions:
 
 ---
 
-**Note**: This application is designed for educational and demonstration purposes. For actual medical use, please ensure compliance with relevant healthcare regulations and obtain necessary certifications.
+<div align="center">
+  <p>Made with ❤️ for healthy living</p>
+  <p>⭐ Star this repository if you found it helpful!</p>
+</div>
