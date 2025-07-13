@@ -142,7 +142,7 @@ implementation 'org.apache.commons:commons-lang3:3.0'
 ### 1. Clone the Repository
 ```bash
 git clone <repository-url>
-cd wear
+cd EmCare
 ```
 
 ### 2. Open in Android Studio
