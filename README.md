@@ -8,231 +8,225 @@
   [![Google Play Services](https://img.shields.io/badge/Google%20Play%20Services-17.1.0+-orange.svg)](https://developers.google.com/android/guides/overview)
 </div>
 
+# EmCare - Emergency and Healthcare Android Application
+
 ## 📱 Overview
 
-EmCare is a comprehensive healthcare monitoring application that provides real-time health monitoring, emergency alerts, and caregiver coordination. The app consists of two modules:
-
-- **Mobile Module**: Main Android application for patients and caregivers
-- **Wear Module**: Wear OS application for smartwatch integration
-
-The system simulates smartwatch integration using the Wear OS emulator, capturing vital data like heart rate, blood pressure, and motion sensors, then transferring it to the mobile app using Google's Wearable Data Layer API for real-time syncing and emergency alerts.
-
-## 🚀 Key Features
-
-### 🏥 Health Monitoring
-- **Real-time Vital Signs Tracking**: Heart rate, blood pressure, and motion sensor data
-- **Smartwatch Integration**: Seamless data collection from Wear OS devices
-- **Health Data History**: Comprehensive logging and analysis of health metrics
-- **Automated Health Alerts**: Intelligent threshold-based emergency notifications
-
-### 🚨 Emergency Response System
-- **Instant SMS Alerts**: Automatic emergency notifications to multiple contacts
-- **Caregiver Coordination**: Direct communication with assigned caregivers
-- **Emergency Contact Management**: Configurable emergency contact system
-- **Location Sharing**: GPS-based location tracking for emergency situations
-
-### 👥 User Management
-- **Dual User Types**: Separate interfaces for patients and caregivers
-- **Secure Authentication**: User registration and login system
-- **Profile Management**: Comprehensive user profile and health data management
-- **Caregiver Assignment**: Patient-caregiver relationship management
-
-### 📊 Data Management
-- **Local SQLite Database**: Secure local storage of health and user data
-- **Data Synchronization**: Real-time data transfer between wear and mobile modules
-- **Health Analytics**: Historical data analysis and trends
-- **SMS Rate Limiting**: Intelligent SMS sending to prevent spam
+EmCare is a comprehensive healthcare monitoring system that integrates Wear OS smartwatch functionality with a mobile application to provide real-time health monitoring and emergency alert capabilities. The system uses Google's Wearable Data Layer API to facilitate seamless communication between wearable devices and mobile phones.
 
 ## 🏗️ Architecture
 
-### Module Structure
-```
-EmCare/
-├── mobile/                 # Main Android application
-│   ├── src/main/java/
-│   │   ├── common/         # Shared components
-│   │   ├── patient/        # Patient-specific features
-│   │   ├── caretaker/      # Caregiver features
-│   │   ├── smartwatch/     # Wear integration
-│   │   ├── databases/      # Local database management
-│   │   └── helperclasses/  # Utility classes
-│   └── src/main/res/       # UI resources
-└── wear/                   # Wear OS application
-    └── src/main/java/
-        └── com/myproj/wear/ # Wear-specific logic
-```
+The project consists of two main modules:
 
-### Database Schema
+### 1. **Wear Module** (`wear/`)
+- **Platform**: Wear OS (Android Wear)
+- **Purpose**: Smartwatch application that captures vital health data
+- **Key Features**:
+  - Real-time sensor data collection (Heart Rate, Blood Pressure, Motion)
+  - Data transmission to mobile app via Wearable Data Layer API
+  - Standalone operation capability
 
-#### Health Data Table
-- **Name**: Patient identifier
-- **Heart_Rate**: Heart rate readings
-- **Pressure_Data**: Blood pressure data
-- **Motion_Sensor**: Motion sensor readings
-- **Time**: Timestamp of readings
+### 2. **Mobile Module** (`mobile/`)
+- **Platform**: Android Mobile
+- **Purpose**: Main healthcare application for patients and caretakers
+- **Key Features**:
+  - Patient registration and authentication
+  - Real-time health data monitoring
+  - Emergency alert system with SMS notifications
+  - Caretaker management
+  - Health data history and analytics
 
-#### Patient Table
-- **NAME**: Primary key, patient name
-- **EMAIL**: Patient email address
-- **NUMBER**: Patient phone number
-- **CTNAME**: Caregiver name
-- **CTNUM**: Caregiver phone number
-- **GENDER**: Patient gender
-- **DOB**: Date of birth
+## 🚀 Key Features
 
-#### Login Table
-- **NAME**: Username (Primary key)
-- **PASSWORD**: Encrypted password
-- **ACTIVE**: Active session status
-
-#### Emergency Numbers Table
-- **Id**: Auto-increment primary key
-- **Name**: Contact name
-- **Number**: Emergency contact number
-
-#### SMS Limit Table
-- **COUNT**: SMS count per day
-- **DATE**: Date of SMS sending
-- **USERNAME**: User identifier
-
-## 🔧 Technical Implementation
-
-### Smartwatch Integration
-- **Wearable Data Layer API**: Real-time communication between wear and mobile
-- **Sensor Data Collection**: Heart rate, pressure, and motion sensors
-- **Message-based Communication**: JSON data transfer via MessageClient
-- **Background Processing**: Continuous health monitoring service
-
-### Health Data Processing
-```java
-// Real-time health data analysis
-if(averagePressure < 100 || averagePressure > 500 ||
-   averageGravity > 0.1 || averageGravity < -0.1 ||
-   averageHeartdata > 100 || averageHeartdata < 40) {
-    // Trigger emergency alert
-}
-```
+### Health Monitoring
+- **Real-time Vital Signs Tracking**:
+  - Heart Rate monitoring
+  - Blood Pressure (pressure sensor simulation)
+  - Motion/Accelerometer data
+  - Timestamp tracking for all measurements
 
 ### Emergency Alert System
-- **Multi-level Alerting**: Emergency contacts and caregiver notifications
-- **SMS Rate Limiting**: Maximum 4 SMS per day per user
-- **Intelligent Routing**: Different alert strategies based on user status
-- **Location Integration**: GPS coordinates for emergency response
+- **Automated Emergency Detection**:
+  - Abnormal heart rate detection (< 40 or > 100 BPM)
+  - Blood pressure threshold monitoring (< 100 or > 500)
+  - Motion sensor anomaly detection
+  - Automatic SMS alerts to emergency contacts
 
-### Security Features
-- **Local Data Storage**: Sensitive data stored locally
-- **Permission Management**: Granular Android permissions
-- **SMS Validation**: Rate limiting and validation
-- **User Session Management**: Secure login/logout system
+### User Management
+- **Patient Features**:
+  - User registration and login
+  - Profile management
+  - Health data visualization
+  - Real-time health status updates
+  - Caretaker assignment
 
-## 📱 Screenshots & UI
+- **Caretaker Features**:
+  - Patient health data monitoring
+  - Emergency notification system
+  - Health history tracking
+  - Automated SMS alerts
 
-### Main Features
-- **Onboarding**: Interactive tutorial with app features
-- **Dashboard**: Real-time health metrics display
-- **Emergency Contacts**: Manage emergency contact list
-- **Health History**: Historical data visualization
-- **User Profile**: Comprehensive profile management
-- **Caregiver Interface**: Dedicated caregiver monitoring view
+### Communication System
+- **Wearable Data Layer Integration**:
+  - Real-time data synchronization between wear and mobile
+  - Message-based communication protocol
+  - Automatic reconnection handling
 
-## 🛠️ Installation & Setup
+- **SMS Alert System**:
+  - Emergency contact notifications
+  - Caretaker alerts
+  - SMS rate limiting (max 4 SMS per day per user)
+  - Automated credential sharing for new caretakers
 
-### Prerequisites
-- Android Studio Arctic Fox or later
-- Android SDK API 28+
-- Wear OS Emulator or physical Wear OS device
-- Google Play Services 17.1.0+
+## 🛠️ Technical Stack
 
-### Build Instructions
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/emcare.git
-   cd emcare
-   ```
-
-2. **Open in Android Studio**
-   - Open the project in Android Studio
-   - Sync Gradle files
-   - Install required dependencies
-
-3. **Configure Wear OS Emulator**
-   - Set up Wear OS emulator in Android Studio
-   - Enable sensor simulation for testing
-
-4. **Build and Run**
-   ```bash
-   # Build mobile module
-   ./gradlew :mobile:assembleDebug
-   
-   # Build wear module
-   ./gradlew :wear:assembleDebug
-   ```
-
-### Configuration
-
-1. **Emergency Contacts**: Add emergency contact numbers in the app
-2. **Caregiver Assignment**: Assign caregivers to patients
-3. **Health Thresholds**: Configure health alert thresholds
-4. **SMS Permissions**: Grant SMS permissions for emergency alerts
-
-## 🔌 Dependencies
-
-### Mobile Module
+### Dependencies
 ```gradle
-implementation 'androidx.appcompat:appcompat:1.4.1'
-implementation 'com.google.android.material:material:1.6.0'
-implementation 'com.google.android.gms:play-services-wearable:17.1.0'
-implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.1'
-implementation 'org.apache.commons:commons-lang3:3.0'
-```
-
-### Wear Module
-```gradle
+// Wear Module
 implementation 'com.google.android.gms:play-services-wearable:17.1.0'
 implementation 'androidx.wear:wear:1.2.0'
 implementation 'androidx.percentlayout:percentlayout:1.0.0'
+
+// Mobile Module
+implementation 'com.google.android.gms:play-services-wearable:17.1.0'
+implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.1'
+implementation 'de.hdodenhof:circleimageview:3.1.0'
+implementation 'com.google.android.material:material:1.6.0'
+implementation 'org.apache.commons:commons-lang3:3.0'
 ```
+
+### Database Architecture
+- **SQLite Databases**:
+  - `Login.db` - User authentication and session management
+  - `PatientData.db` - Patient and caretaker information
+  - `HealthData.db` - Health monitoring data storage
+  - `EmNum.db` - Emergency contact numbers
+  - `SMSLimit.db` - SMS usage tracking and rate limiting
+
+### Core Components
+
+#### Wear Module Components
+- **MainActivity**: Sensor data collection and transmission
+- **Sensor Integration**: Heart rate, pressure, and accelerometer sensors
+- **Data Transmission**: Wearable Data Layer API implementation
+
+#### Mobile Module Components
+- **HealthDataProcessor**: Processes incoming health data and triggers alerts
+- **HealthListener**: WearableListenerService for receiving wear data
+- **SmsHelperClass**: SMS functionality and rate limiting
+- **Database Classes**: SQLite database operations
+- **UI Components**: Patient and caretaker interfaces
+
+## 📋 Prerequisites
+
+### Development Environment
+- Android Studio Arctic Fox or later
+- Android SDK 28+ (API Level 28)
+- Google Play Services
+- Wear OS Emulator or physical Wear OS device
+
+### Required Permissions
+```xml
+<!-- Wear Module -->
+<uses-permission android:name="android.permission.WAKE_LOCK" />
+<uses-permission android:name="android.permission.BODY_SENSORS" />
+<uses-feature android:name="android.hardware.type.watch" />
+<uses-feature android:name="android.hardware.sensor.heartrate" />
+
+<!-- Mobile Module -->
+<uses-permission android:name="android.permission.SEND_SMS" />
+<uses-permission android:name="android.permission.READ_SMS" />
+```
+
+## 🚀 Installation & Setup
+
+### 1. Clone the Repository
+```bash
+git clone <repository-url>
+cd wear
+```
+
+### 2. Open in Android Studio
+- Open Android Studio
+- Select "Open an existing Android Studio project"
+- Navigate to the `wear` folder and select it
+
+### 3. Configure Emulators
+- **Mobile Emulator**: Create an Android phone emulator (API 28+)
+- **Wear Emulator**: Create a Wear OS emulator with heart rate sensor support
+
+### 4. Build and Run
+```bash
+# Build the project
+./gradlew build
+
+# Run mobile module
+./gradlew :mobile:installDebug
+
+# Run wear module
+./gradlew :wear:installDebug
+```
+
+## 🔧 Configuration
+
+### Emergency Contacts Setup
+1. Launch the mobile application
+2. Navigate to emergency contacts section
+3. Add up to 3 emergency contact numbers
+4. These numbers will receive SMS alerts during emergencies
+
+### Caretaker Assignment
+1. Register as a patient
+2. Add caretaker information during registration
+3. System automatically sends SMS with login credentials to caretaker
+4. Caretaker can monitor patient health data through dedicated interface
+
+## 📊 Health Monitoring Parameters
+
+### Threshold Values
+- **Heart Rate**: Normal range 40-100 BPM
+- **Blood Pressure**: Normal range 100-500 (simulated values)
+- **Motion Sensor**: Threshold ±0.1 (accelerometer readings)
+
+### Alert Triggers
+- Heart rate outside normal range
+- Blood pressure exceeding thresholds
+- Abnormal motion patterns
+- System automatically sends SMS alerts to configured contacts
+
+## 🔄 Data Flow
+
+### Wear to Mobile Communication
+1. **Sensor Data Collection**: Wear app continuously monitors sensors
+2. **Data Processing**: Raw sensor data is processed and formatted
+3. **Message Transmission**: Data sent via Wearable Data Layer API
+4. **Mobile Reception**: HealthListener service receives data
+5. **Data Processing**: HealthDataProcessor analyzes and stores data
+6. **Alert Generation**: Automatic alerts triggered if thresholds exceeded
+
+### Emergency Alert Flow
+1. **Threshold Detection**: System detects abnormal health parameters
+2. **User Verification**: Checks if user is logged in
+3. **Contact Selection**: Determines appropriate emergency contacts
+4. **SMS Transmission**: Sends emergency alerts via SMS
+5. **Rate Limiting**: Ensures SMS limits are not exceeded
 
 ## 🧪 Testing
 
-### Unit Tests
-- Database operations testing
-- Health data processing validation
-- SMS functionality testing
+### Wear OS Emulator Testing
+- Use Android Studio's Wear OS emulator
+- Enable heart rate sensor simulation
+- Test data transmission between wear and mobile modules
+- Verify emergency alert functionality
 
-### Integration Tests
-- Wear-mobile communication testing
-- Emergency alert system testing
-- User authentication flow testing
+### SMS Testing
+- Configure test phone numbers for emergency contacts
+- Test SMS rate limiting functionality
+- Verify caretaker notification system
 
-### Manual Testing
-- Wear OS emulator sensor simulation
-- Emergency contact management
-- Health data visualization
+## 📱 Screenshots
 
-## 📊 Performance & Optimization
-
-- **Efficient Data Processing**: Stream-based health data analysis
-- **Background Services**: Optimized for battery life
-- **Local Storage**: Fast database operations
-- **Memory Management**: Efficient resource utilization
-
-## 🔒 Security & Privacy
-
-- **Local Data Storage**: No cloud dependency for sensitive data
-- **Permission-based Access**: Minimal required permissions
-- **SMS Rate Limiting**: Prevents abuse of emergency system
-- **User Session Management**: Secure authentication
-
-## 🚀 Future Enhancements
-
-- **Cloud Integration**: Remote health data backup
-- **AI Health Analysis**: Machine learning-based health insights
-- **Telemedicine Integration**: Video consultation features
-- **IoT Device Support**: Additional health device integration
-- **Multi-language Support**: Internationalization
-- **Offline Mode**: Enhanced offline functionality
+*[Add screenshots of key application screens here]*
 
 ## 🤝 Contributing
 
@@ -246,29 +240,33 @@ implementation 'androidx.percentlayout:percentlayout:1.0.0'
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👨‍💻 Author
+## 👥 Authors
 
-**Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
+- **Your Name** - *Initial work* - [YourGitHub](https://github.com/yourusername)
 
 ## 🙏 Acknowledgments
 
-- Google Wearable Data Layer API for smartwatch integration
-- Android Wear OS for wearable platform
-- SQLite for local database management
-- Apache Commons for utility functions
+- Google Wearable Data Layer API documentation
+- Android Wear OS development guidelines
+- Android sensor framework documentation
 
 ## 📞 Support
 
 For support and questions:
-- Create an issue in the GitHub repository
-- Email: your.email@example.com
-- Documentation: [Wiki Link]
+- Create an issue in the repository
+- Contact: [your-email@example.com]
+
+## 🔮 Future Enhancements
+
+- [ ] Integration with real medical devices
+- [ ] Cloud-based data storage
+- [ ] Machine learning for predictive health analytics
+- [ ] Integration with healthcare provider systems
+- [ ] Multi-language support
+- [ ] Advanced notification system
+- [ ] Health data export functionality
+- [ ] Integration with fitness tracking apps
 
 ---
 
-<div align="center">
-  <p><strong>EmCare - We Care About You</strong></p>
-  <p>Emergency healthcare monitoring made simple and reliable</p>
-</div>
+**Note**: This application is designed for educational and demonstration purposes. For actual medical use, please ensure compliance with relevant healthcare regulations and obtain necessary certifications.
