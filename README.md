@@ -329,15 +329,10 @@ if(averagePressure < 100 || averagePressure > 500 ||
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 👨‍💻 Author
 
 **Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
+- GitHub: [gokul14](https://github.com/gokulg14)
 
 ## 🙏 Acknowledgments
 
@@ -350,8 +345,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For support and questions:
 - Create an issue in the GitHub repository
-- Email: your.email@example.com
-- Documentation: [Wiki Link]
+- Email: gokulgnair777@gmail.com
 
 ---
 
