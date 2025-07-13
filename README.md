@@ -148,7 +148,7 @@ cd EmCare
 ### 2. Open in Android Studio
 - Open Android Studio
 - Select "Open an existing Android Studio project"
-- Navigate to the `wear` folder and select it
+- Navigate to the `EmCare` folder and select it
 
 ### 3. Configure Emulators
 - **Mobile Emulator**: Create an Android phone emulator (API 28+)
