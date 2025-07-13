@@ -18,15 +18,6 @@ EmCare is a comprehensive healthcare monitoring application that provides real-t
 
 The system simulates smartwatch integration using the Wear OS emulator, capturing vital data like heart rate, blood pressure, and motion sensors, then transferring it to the mobile app using Google's Wearable Data Layer API for real-time syncing and emergency alerts.
 
-## 🛠️ Tech Stack
-
-### 🏗️ **Core Technologies**
-- **Language**: Java 8
-- **Platform**: Android Native
-- **Build System**: Gradle 7.1.1
-- **Minimum SDK**: API 28 (Android 9.0)
-- **Target SDK**: API 32 (Android 12.0)
-- **Architecture**: Multi-module Android Project
 
 ## 🏗️ Architecture
 
@@ -93,6 +84,14 @@ The project consists of two main modules:
   - Automated credential sharing for new caretakers
 
 ## 🛠️ Technical Stack
+
+### 🏗️ **Core Technologies**
+- **Language**: Java 8
+- **Platform**: Android Native
+- **Build System**: Gradle 7.1.1
+- **Minimum SDK**: API 28 (Android 9.0)
+- **Target SDK**: API 32 (Android 12.0)
+- **Architecture**: Multi-module Android Project
 
 ### Dependencies
 ```gradle
