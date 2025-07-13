@@ -41,6 +41,23 @@ The project consists of two main modules:
   - Caretaker management
   - Health data history and analytics
 
+### Module Structure
+```
+EmCare/
+├── mobile/                 # Main Android application
+│   ├── src/main/java/
+│   │   ├── common/         # Shared components
+│   │   ├── patient/        # Patient-specific features
+│   │   ├── caretaker/      # Caregiver features
+│   │   ├── smartwatch/     # Wear integration
+│   │   ├── databases/      # Local database management
+│   │   └── helperclasses/  # Utility classes
+│   └── src/main/res/       # UI resources
+└── wear/                   # Wear OS application
+    └── src/main/java/
+        └── com/myproj/wear/ # Wear-specific logic
+```
+
 ## 🚀 Key Features
 
 ### Health Monitoring
@@ -92,6 +109,37 @@ The project consists of two main modules:
 - **Minimum SDK**: API 28 (Android 9.0)
 - **Target SDK**: API 32 (Android 12.0)
 - **Architecture**: Multi-module Android Project
+
+### 🗄️ **Database & Storage**
+- **Local Database**: SQLite with SQLiteOpenHelper
+- **Data Models**: Custom Java POJOs
+- **Data Processing**: Stream API for health data analysis
+- **JSON Handling**: Jackson ObjectMapper for data serialization
+
+### 🔌 **APIs & Services**
+- **Google Wearable Data Layer API**: Real-time communication
+- **Android Sensor Framework**: Health data collection
+- **SMS Manager**: Emergency notifications
+- **Local Broadcast Manager**: Inter-component communication
+
+### 🎨 **UI/UX Technologies**
+- **Material Design**: Google Material Components
+- **Custom Animations**: Android Animation Framework
+- **Responsive Layouts**: ConstraintLayout and PercentLayout
+- **Navigation**: DrawerLayout with NavigationView
+- **Custom Views**: CircleImageView for profile pictures
+
+### 🔧 **Development Tools**
+- **IDE**: Android Studio Arctic Fox+
+- **Version Control**: Git
+- **Build System**: Gradle with Multi-module support
+- **Testing Framework**: JUnit, Espresso, Mockito
+
+### 📊 **Data Processing Libraries**
+- **Apache Commons Lang3**: String utilities and validation
+- **Google Guava**: Collections and utilities
+- **Jackson**: JSON serialization/deserialization
+- **Java 8 Streams**: Functional data processing
 
 ### Dependencies
 ```gradle
