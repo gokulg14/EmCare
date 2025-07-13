@@ -238,7 +238,7 @@ cd wear
 
 ## 👥 Authors
 
-- **Your Name** - *Initial work* - [Gokul](https://github.com/gokulg14)
+- **Gokul** - *Initial work* - [gokul14](https://github.com/gokulg14)
 
 ## 🙏 Acknowledgments
 
