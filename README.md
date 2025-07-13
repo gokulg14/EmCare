@@ -11,7 +11,12 @@
 
 ## 📱 Overview
 
-EmCare is a comprehensive healthcare monitoring system that integrates Wear OS smartwatch functionality with a mobile application to provide real-time health monitoring and emergency alert capabilities. The system uses Google's Wearable Data Layer API to facilitate seamless communication between wearable devices and mobile phones.
+EmCare is a comprehensive healthcare monitoring application that provides real-time health monitoring, emergency alerts, and caregiver coordination. The app consists of two modules:
+
+- **Mobile Module**: Main Android application for patients and caregivers
+- **Wear Module**: Wear OS application for smartwatch integration
+
+The system simulates smartwatch integration using the Wear OS emulator, capturing vital data like heart rate, blood pressure, and motion sensors, then transferring it to the mobile app using Google's Wearable Data Layer API for real-time syncing and emergency alerts.
 
 ## 🏗️ Architecture
 
