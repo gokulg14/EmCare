@@ -8,7 +8,6 @@
   [![Google Play Services](https://img.shields.io/badge/Google%20Play%20Services-17.1.0+-orange.svg)](https://developers.google.com/android/guides/overview)
 </div>
 
-# EmCare - Emergency and Healthcare Android Application
 
 ## 📱 Overview
 
