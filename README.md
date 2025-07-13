@@ -1,7 +1,7 @@
 # EmCare - Emergency and Healthcare Monitoring App
 
 <div align="center">
-  <img src="Emcare/mobile/src/main/res/drawable/emcare_logo.jpg" alt="EmCare Logo" width="200"/>
+  <img src="EmCare/mobile/src/main/res/drawable/emcare_logo.jpg" alt="EmCare Logo" width="200"/>
   
   [![Android](https://img.shields.io/badge/Android-API%2028+-green.svg)](https://developer.android.com/)
   [![Wear OS](https://img.shields.io/badge/Wear%20OS-API%2028+-blue.svg)](https://developer.android.com/wear)
