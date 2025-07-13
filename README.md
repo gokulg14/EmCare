@@ -225,6 +225,18 @@ cd wear
 
 ## 📱 Screenshots
 
+![WhatsApp Image 2025-07-13 at 2 16 30 PM (1)](https://github.com/user-attachments/assets/557004d3-b746-4b1d-b8cd-0006df2b6564)
+![WhatsApp Image 2025-07-13 at 2 16 31 PM](https://github.com/user-attachments/assets/21cef9ef-9927-4593-b681-584026225cd3)
+![WhatsApp Image 2025-07-13 at 2 16 31 PM (1)](https://github.com/user-attachments/assets/af7ec0fc-7e29-45b1-8e94-29ab3677c228)
+![WhatsApp Image 2025-07-13 at 2 16 31 PM (2)](https://github.com/user-attachments/assets/5f149b81-7bab-4da4-b9d5-182c8bfc3c4b)
+![WhatsApp Image 2025-07-13 at 2 16 32 PM](https://github.com/user-attachments/assets/c5499685-fb13-44d5-a4e8-5c6ff5adf095)
+![WhatsApp Image 2025-07-13 at 2 16 32 PM (1)](https://github.com/user-attachments/assets/30514d92-5dbe-4121-a5fc-9a38373e06f0)
+![WhatsApp Image 2025-07-13 at 2 16 33 PM](https://github.com/user-attachments/assets/3e9103f4-37bf-42d3-ba6e-6cbf3b9530df)
+![WhatsApp Image 2025-07-13 at 2 16 33 PM (1)](https://github.com/user-attachments/assets/5e9b359f-930a-423c-bfe6-3fa2c9b77457)
+![WhatsApp Image 2025-07-13 at 2 16 34 PM](https://github.com/user-attachments/assets/26e631f7-6237-4c80-b393-0aca883bdc37)
+![WhatsApp Image 2025-07-13 at 2 16 34 PM (1)](https://github.com/user-attachments/assets/3587f370-ca45-492c-bf73-0c40b645f73a)
+![WhatsApp Image 2025-07-13 at 2 16 34 PM (2)](https://github.com/user-attachments/assets/f56f4ded-defe-4c29-bbcc-37ba9bfe8de6)
+![WhatsApp Image 2025-07-13 at 2 16 30 PM](https://github.com/user-attachments/assets/708cb921-aa57-40e2-95a9-873459e9f800)
 
 
 ## 🤝 Contributing
